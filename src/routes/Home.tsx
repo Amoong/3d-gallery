@@ -1,30 +1,29 @@
 import Gallery from "components/Gallery";
+import UserIcon from "components/svgs/UserIcon";
 import styled from "styled-components";
 
 const SigninButton = styled.button`
+  position: absolute;
+  right: 10px;
+  top: 10px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-image: url("https://avatars.githubusercontent.com/u/33210021?v=4");
-  background-repeat: no-repeat;
-  background-size: contain;
+  background-color: rgba(0, 0, 0, 0);
 `;
 
 const HomeContainer = styled.div`
   width: 100%;
   height: 100%;
-  ${SigninButton} {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
 `;
 
 function Home() {
   return (
     <HomeContainer>
       <Gallery />
-      <SigninButton />
+      <SigninButton>
+        <UserIcon />
+      </SigninButton>
     </HomeContainer>
   );
 }
