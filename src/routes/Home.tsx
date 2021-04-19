@@ -1,8 +1,9 @@
 import Gallery from "components/Gallery";
 import UserIcon from "components/svgs/UserIcon";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const SigninButton = styled.button`
+const SigninButton = styled(Link)`
   position: absolute;
   right: 0.8vw;
   top: 0.8vw;
@@ -21,7 +22,7 @@ function Home() {
   return (
     <HomeContainer>
       <Gallery />
-      <SigninButton>
+      <SigninButton to="/signin">
         <UserIcon />
       </SigninButton>
     </HomeContainer>
