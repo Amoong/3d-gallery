@@ -1,12 +1,26 @@
-import Gallery from "components/Gallery";
-import { Reset } from "styled-reset";
+import styled, { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
+import AppRouter from "Router";
+
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+  button {
+    border: none;
+    outline: none;
+  }
+`;
+
+const AppContainer = styled.div`
+  min-width: 100vw;
+  min-height: 100vh;
+`;
 
 function App() {
   return (
-    <>
-      <Reset />
-      <Gallery />
-    </>
+    <AppContainer>
+      <GlobalStyle />
+      <AppRouter />
+    </AppContainer>
   );
 }
 
