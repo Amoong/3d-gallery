@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 const SigninButton = styled.button`
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 0.8vw;
+  top: 0.8vw;
   width: 50px;
   height: 50px;
   border-radius: 50%;

@@ -4,7 +4,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import About from "routes/About";
+import Signin from "routes/Signin";
 import Home from "routes/Home";
 
 const AppRouter = () => {
@@ -14,8 +14,8 @@ const AppRouter = () => {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/About">
-          <About />
+        <Route exact path="/signin">
+          <Signin />
         </Route>
         <Redirect from="*" to="/" />
       </Switch>

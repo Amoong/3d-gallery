@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
   button {
     border: none;
     outline: none;
+    cursor: pointer;
   }
 `;
 
