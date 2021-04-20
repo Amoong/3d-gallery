@@ -4,14 +4,28 @@ import styled from "styled-components";
 
 import iconTypes from "constants/iconTypes";
 import React, { useState } from "react";
+import { withRouter, RouteComponentProps } from "react-router";
 
 const AuthContainer = styled.div``;
 
-function Auth() {
+const ErrorMessage = styled.span`
+  color: crimson;
+`;
+
+function Auth(props: RouteComponentProps) {
+  const { history } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [errMessage, setErrMessage] = useState("");
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    try {
+      await authService.createUserWithEmailAndPassword(email, password);
+      history.push("/");
+    } catch (error) {
+      setErrMessage(error.message);
+    }
   };
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -42,12 +56,15 @@ function Auth() {
         <input
           name="password"
           type="password"
+          autoComplete="current-password"
           value={password}
           onChange={onChange}
         />
+        <input type="submit" value="Sign Up" />
       </form>
+      <ErrorMessage>{errMessage}</ErrorMessage>
     </AuthContainer>
   );
 }
 
-export default Auth;
+export default withRouter(Auth);
