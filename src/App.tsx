@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
 const AppContainer = styled.div`
   min-width: 100vw;
   min-height: 100vh;
+  background: #222;
 `;
 
 function App() {

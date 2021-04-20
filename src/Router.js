@@ -4,7 +4,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import Signin from "routes/Signin";
+import Signin from "routes/Auth";
 import Home from "routes/Home";
 
 const AppRouter = () => {
