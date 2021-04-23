@@ -8,6 +8,10 @@ import { withRouter, RouteComponentProps } from "react-router";
 
 const AuthContainer = styled.div``;
 
+const AuthTitle = styled.h1`
+  color: white;
+`;
+
 const ErrorMessage = styled.span`
   color: crimson;
 `;
@@ -17,11 +21,17 @@ function Auth(props: RouteComponentProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
+  const [isSignup, setIsSignup] = useState(false);
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      await authService.createUserWithEmailAndPassword(email, password);
+      if (isSignup) {
+        await authService.createUserWithEmailAndPassword(email, password);
+      } else {
+        await authService.signInWithEmailAndPassword(email, password);
+      }
       history.push("/");
     } catch (error) {
       setErrMessage(error.message);
@@ -41,9 +51,12 @@ function Auth(props: RouteComponentProps) {
     }
   };
 
+  const toggleSignup = () => setIsSignup((prev) => !prev);
+
   return (
     <AuthContainer>
       <NavIcon iconType={iconTypes.HOME} to="/" />
+      {isSignup ? <AuthTitle>Signup</AuthTitle> : <AuthTitle>Signin</AuthTitle>}
       <form onSubmit={onSubmit}>
         <input
           name="email"
@@ -60,8 +73,11 @@ function Auth(props: RouteComponentProps) {
           value={password}
           onChange={onChange}
         />
-        <input type="submit" value="Sign Up" />
+        <input type="submit" value={isSignup ? "Sign Up" : "Sign In"} />
       </form>
+      <button onClick={toggleSignup}>
+        {isSignup ? "I want Signin" : "I want Signup"}
+      </button>
       <ErrorMessage>{errMessage}</ErrorMessage>
     </AuthContainer>
   );
